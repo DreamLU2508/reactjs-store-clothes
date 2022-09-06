@@ -8,10 +8,14 @@ class MyComponents extends React.Component {
         username: "DreamLU"
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
             name: e.target.value
         })
+    }
+
+    handleClick = () => {
+        alert('click me')
     }
 
     render() {
@@ -24,6 +28,7 @@ class MyComponents extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 My name is {this.state.name}
+                <button onClick={() => this.handleClick()}>click me</button>
             </div>
         )
     }
