@@ -5,7 +5,9 @@ class MyComponents extends React.Component {
 
     state = {
         name: "Đức Hoàng",
-        username: "DreamLU"
+        username: "DreamLU",
+        username: "",
+        password: ""
     }
 
     handleChange = (e) => {
@@ -14,9 +16,24 @@ class MyComponents extends React.Component {
         })
     }
 
-    handleClick = () => {
-        alert('click me')
+    handleClick = (e) => {
+        e.preventDefault()
+        console.log("check state", this.state)
     }
+
+    handleChangeUsername = (e) => {
+        this.setState({
+            username: e.target.value
+        })
+    }
+
+    handleChangePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+
 
     render() {
 
@@ -28,7 +45,12 @@ class MyComponents extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 My name is {this.state.name}
-                <button onClick={() => this.handleClick()}>click me</button>
+                <form>
+                    <input className='username' type='text' value={this.state.username} onChange={(e) => this.handleChangeUsername(e)} />
+                    <input className='password' type='text' value={this.state.password} onChange={(e) => this.handleChangePassword(e)} />
+                    <button onClick={(e) => this.handleClick(e)}>click me</button>
+                </form>
+
             </div>
         )
     }
