@@ -1,0 +1,32 @@
+button {
+    cursor: pointer;
+}
+
+.todo-container {
+    .todo-input {
+        input {
+            margin-right: 5px;
+        }
+    }
+
+    .todo-content {
+        width: 400px;
+        margin: 10px auto;
+
+
+
+        .todo-child {
+            &:first-child {
+                border-top: 1px solid white;
+            }
+
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px solid white;
+
+            button {
+                margin: 0 5px;
+            }
+        }
+    }
+}

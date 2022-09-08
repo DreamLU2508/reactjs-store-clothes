@@ -1,13 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import AddComponent from './AddComponent';
+import ChildrenComponent from './ChildrenComponent';
 
 class MyComponents extends React.Component {
 
     state = {
         name: "Đức Hoàng",
         username: "DreamLU",
-        username: "",
-        password: ""
+        jobs: [
+            { id: '1', title: 'cong nhan', salary: 500 },
+            { id: '2', title: 'Phu ho', salary: 100 },
+            { id: '3', title: 'giam doc', salary: 5000 },
+        ]
     }
 
     handleChange = (e) => {
@@ -16,41 +20,42 @@ class MyComponents extends React.Component {
         })
     }
 
-    handleClick = (e) => {
-        e.preventDefault()
-        console.log("check state", this.state)
-    }
-
-    handleChangeUsername = (e) => {
+    handleAddArray = (job) => {
         this.setState({
-            username: e.target.value
+            jobs: [...this.state.jobs, job]
         })
     }
 
-    handleChangePassword = (e) => {
+    handleDeleteArray = (jobId) => {
         this.setState({
-            password: e.target.value
+            jobs: this.state.jobs.filter((item) => {
+                return item.id !== jobId
+            })
         })
     }
-
-
 
     render() {
 
         return (
             <div>
-                <input
-                    type='text'
-                    value={this.state.name}
-                    onChange={(e) => this.handleChange(e)}
-                />
-                My name is {this.state.name}
-                <form>
-                    <input className='username' type='text' value={this.state.username} onChange={(e) => this.handleChangeUsername(e)} />
-                    <input className='password' type='text' value={this.state.password} onChange={(e) => this.handleChangePassword(e)} />
-                    <button onClick={(e) => this.handleClick(e)}>click me</button>
-                </form>
+                <div>
+                    <input
+                        type='text'
+                        value={this.state.name}
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    My name is {this.state.name}
+                </div>
 
+                <AddComponent
+                    addArray={this.handleAddArray}
+
+                />
+                <ChildrenComponent
+                    showJobs={false}
+                    jobs={this.state.jobs}
+                    deleteArray={this.handleDeleteArray}
+                />
             </div>
         )
     }
